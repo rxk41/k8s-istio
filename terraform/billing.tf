@@ -12,7 +12,7 @@ resource "google_billing_budget" "lab" {
 
   amount {
     specified_amount {
-      currency_code = "USD"
+      currency_code = "INR"
       units         = tostring(var.budget_amount_usd)
     }
   }

@@ -1,6 +1,7 @@
 variable "project_id" {
   description = "Google Cloud project ID"
   type        = string
+  default = "k8s-learning-510807"
 }
 
 variable "region" {
@@ -48,7 +49,7 @@ variable "node_count" {
 variable "billing_account_id" {
   description = "Optional billing account ID, e.g. 000000-000000-000000"
   type        = string
-  default     = ""
+  default     = "01E75E-C464C1-901302"
 }
 
 variable "create_budget" {
@@ -58,7 +59,7 @@ variable "create_budget" {
 }
 
 variable "budget_amount_usd" {
-  description = "Budget threshold in USD"
+  description = "Budget threshold in INR"
   type        = number
   default     = 10
 }
