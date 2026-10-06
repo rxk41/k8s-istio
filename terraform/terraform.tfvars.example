@@ -1,0 +1,19 @@
+project_id = "YOUR_PROJECT_ID"
+
+region = "us-central1"
+zone   = "us-central1-a"
+
+cluster_name = "gke-istio-lab"
+
+network_name = "gke-istio-vpc"
+subnet_name  = "gke-istio-subnet"
+
+node_machine_type = "e2-small"
+
+node_count = 1
+
+create_budget = false
+
+billing_account_id = ""
+
+budget_amount_usd = 10
