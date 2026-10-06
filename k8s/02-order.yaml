@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+  namespace: microservices
+  labels:
+    app: order
+    version: v1
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: order
+      version: v1
+
+  template:
+    metadata:
+      labels:
+        app: order
+        version: v1
+
+    spec:
+      containers:
+        - name: order
+          image: hashicorp/http-echo:1.0
+
+          args:
+            - "-text=Hello from Order Service"
+            - "-listen=:8080"
+
+          ports:
+            - name: http
+              containerPort: 8080
+
+          resources:
+            requests:
+              cpu: 20m
+              memory: 32Mi
+
+            limits:
+              cpu: 100m
+              memory: 64Mi
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 5
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order
+  namespace: microservices
+  labels:
+    app: order
+
+spec:
+  type: ClusterIP
+
+  selector:
+    app: order
+
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+      protocol: TCP

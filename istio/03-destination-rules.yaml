@@ -1,0 +1,68 @@
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: product
+  namespace: microservices
+
+spec:
+  host: product.microservices.svc.cluster.local
+
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: order
+  namespace: microservices
+
+spec:
+  host: order.microservices.svc.cluster.local
+
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: payment
+  namespace: microservices
+
+spec:
+  host: payment.microservices.svc.cluster.local
+
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: inventory
+  namespace: microservices
+
+spec:
+  host: inventory.microservices.svc.cluster.local
+
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: user
+  namespace: microservices
+
+spec:
+  host: user.microservices.svc.cluster.local
+
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL

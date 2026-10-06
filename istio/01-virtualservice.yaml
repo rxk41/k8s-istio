@@ -1,0 +1,89 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: microservices-routing
+  namespace: microservices
+
+spec:
+  hosts:
+    - "*"
+
+  gateways:
+    - microservices-gateway
+
+  http:
+
+    # Product
+    - name: product-route
+      match:
+        - uri:
+            prefix: /product
+
+      rewrite:
+        uri: /
+
+      route:
+        - destination:
+            host: product.microservices.svc.cluster.local
+            port:
+              number: 8080
+
+    # Order
+    - name: order-route
+      match:
+        - uri:
+            prefix: /order
+
+      rewrite:
+        uri: /
+
+      route:
+        - destination:
+            host: order.microservices.svc.cluster.local
+            port:
+              number: 8080
+
+    # Payment
+    - name: payment-route
+      match:
+        - uri:
+            prefix: /payment
+
+      rewrite:
+        uri: /
+
+      route:
+        - destination:
+            host: payment.microservices.svc.cluster.local
+            port:
+              number: 8080
+
+    # Inventory
+    - name: inventory-route
+      match:
+        - uri:
+            prefix: /inventory
+
+      rewrite:
+        uri: /
+
+      route:
+        - destination:
+            host: inventory.microservices.svc.cluster.local
+            port:
+              number: 8080
+
+    # User
+    - name: user-route
+      match:
+        - uri:
+            prefix: /user
+
+      rewrite:
+        uri: /
+
+      route:
+        - destination:
+            host: user.microservices.svc.cluster.local
+            port:
+              number: 8080
